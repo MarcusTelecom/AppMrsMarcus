@@ -10,9 +10,11 @@
     <string name="txt_radio_mk">Maquinsta</string>
     <string name="txt_radio_au">Auxiliar</string>
     <string name="txt_bt_register">Cadastrar</string>
+    <string name="txt_bt_login">Login</string>
 
     <string name="title_layout_register_new">Novo Usuário</string>
     <string name="title_layout_register_edit">Editar Usuário</string>
+    <string name="title_activity_login">LoginActivity</string>
 
 
 </resources>
