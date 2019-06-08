@@ -65,6 +65,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <RadioGroup
+            android:id="@+id/radio_group_funtion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/marginLeft"
@@ -74,15 +75,16 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/sound"
+                android:id="@+id/radio_function_mk"
                 android:text="@string/txt_radio_mk"
-                android:checked="true"/>
+                android:checked="false"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/vibration"
-                android:text="@string/txt_radio_au" />
+                android:id="@+id/radio_function_au"
+                android:text="@string/txt_radio_au"
+                android:checked="false"/>
 
         </RadioGroup>
 
@@ -137,7 +139,7 @@
             android:visibility="gone" />
 
         <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_register"
             style="@style/RaisedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -8,8 +8,11 @@
     <string name="hint_c_password">Confirmar Senha</string>
 
     <string name="txt_radio_mk">Maquinsta</string>
-    <string name="txt_radio_au">Confirmar Senha</string>
+    <string name="txt_radio_au">Auxiliar</string>
     <string name="txt_bt_register">Cadastrar</string>
+
+    <string name="title_layout_register_new">Novo Usuário</string>
+    <string name="title_layout_register_edit">Editar Usuário</string>
 
 
 </resources>
