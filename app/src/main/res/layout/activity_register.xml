@@ -38,7 +38,7 @@
             android:layout_marginRight="@dimen/marginRight">
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/name_userr"
+                android:id="@+id/name_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_name_user"
@@ -131,19 +131,13 @@
 
         </android.support.design.widget.TextInputLayout>
 
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:visibility="gone" />
+
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_register"
             style="@style/RaisedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/layoupassword"
             android:layout_marginLeft="@dimen/marginLeft"
             android:layout_marginTop="@dimen/marginTop"
             android:layout_marginRight="@dimen/marginRight"

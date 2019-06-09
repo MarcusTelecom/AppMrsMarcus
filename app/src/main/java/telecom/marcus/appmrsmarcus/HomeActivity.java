@@ -1,6 +1,7 @@
 package telecom.marcus.appmrsmarcus;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -39,7 +40,6 @@ public class HomeActivity extends AppCompatActivity
     private SessionManager sessionManager;
     private TextView name_user, registration;
     private String getId;
-
     private static String URL_READ = "http://192.168.2.120/bd_mrs/read_detail.php";
 
 
@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sessionManager.logout();
+
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -123,7 +123,7 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -134,6 +134,14 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        }else if (id == R.id.nav_edit){
+            Intent intent = new Intent(HomeActivity.this, RegisterActivity.class);
+            intent.putExtra("newUser", false);
+            intent.putExtra("id", getId);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_logout){
+            sessionManager.logout();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

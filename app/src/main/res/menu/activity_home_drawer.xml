@@ -35,4 +35,18 @@
         </menu>
     </item>
 
+    <item android:title="Action">
+        <menu>
+            <item
+                android:id="@+id/nav_edit"
+                android:icon="@drawable/ic_menu_edit"
+                android:title="@string/menu_edit" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_close"
+                android:title="@string/menu_logout" />
+        </menu>
+    </item>
+
+
 </menu>

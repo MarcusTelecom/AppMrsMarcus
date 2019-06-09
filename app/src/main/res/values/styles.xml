@@ -9,7 +9,7 @@
     </style>
 
     <style name="RaisedButton" parent="Widget.AppCompat.Button.Colored">
-        <item name="backgroundTint">@color/colorPrimaryDark</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
     </style>
 
     <style name="FlatButton" parent="Widget.AppCompat.Button.Borderless">

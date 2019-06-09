@@ -1,5 +1,6 @@
 package telecom.marcus.appmrsmarcus;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -40,8 +41,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         setTitle(R.string.txt_bt_login);
 
         sessionManager = new SessionManager(this);
@@ -57,10 +56,9 @@ public class LoginActivity extends AppCompatActivity {
                 String mRegistration = registration.getText().toString().trim();
                 String mPassword = password.getText().toString().trim();
 
-                login(mRegistration,mPassword);
+                login(mRegistration, mPassword);
             }
         });
-
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -75,7 +73,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(final String registration, final String password) {
-        loading.setVisibility(View.VISIBLE);
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Saving...");
+        progressDialog.show();
         btn_login.setVisibility(View.GONE);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LOGIN,
@@ -90,20 +90,18 @@ public class LoginActivity extends AppCompatActivity {
                             if (sucess.equals("1")) {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
-                                    //String name = object.getString("name").trim();
-                                    //String email = object.getString("email").trim();
-                                    String id = object.getString("id").trim(); Toast.makeText(getApplicationContext(),id,Toast.LENGTH_LONG).show();
+                                    String id = object.getString("id").trim();
 
                                     sessionManager.createSession(id);
 
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                     startActivity(intent);
-                                    loading.setVisibility(View.GONE);
+                                    progressDialog.dismiss();
                                 }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            loading.setVisibility(View.GONE);
+                            progressDialog.dismiss();
                             btn_login.setVisibility(View.VISIBLE);
                             Toast.makeText(getApplicationContext(), "Usuário ou senha inválidos " + e.toString(), Toast.LENGTH_SHORT).show();
                         }
@@ -112,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        loading.setVisibility(View.GONE);
+                        progressDialog.dismiss();
                         btn_login.setVisibility(View.VISIBLE);
                         Toast.makeText(getApplicationContext(), "Error " + error.toString(), Toast.LENGTH_SHORT).show();
 

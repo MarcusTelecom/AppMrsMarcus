@@ -10,12 +10,13 @@
     <string name="txt_radio_mk">Maquinsta</string>
     <string name="txt_radio_au">Auxiliar</string>
     <string name="txt_bt_register">Cadastrar</string>
-    <string name="txt_bt_login">Login</string>
+    <string name="txt_bt_login">Entrar</string>
 
     <string name="title_layout_register_new">Novo Usuário</string>
-    <string name="title_layout_register_edit">Editar Usuário</string>
+    <string name="title_layout_register_edit">Editar Usuário: </string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_home">HomeActivity</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -29,6 +30,9 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_logout">Logout</string>
+    <string name="txt_bt_save_edit">Salvar Alterações</string>
 
 
 </resources>
