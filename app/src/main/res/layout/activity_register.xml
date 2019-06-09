@@ -38,7 +38,7 @@
             android:layout_marginRight="@dimen/marginRight">
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/name_user"
+                android:id="@+id/name_userr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_name_user"

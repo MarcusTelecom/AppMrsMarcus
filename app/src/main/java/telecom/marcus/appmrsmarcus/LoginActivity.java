@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressBar loading;
     private AppCompatEditText registration, password;
     private AppCompatButton btn_login;
+    SessionManager sessionManager;
     private static String URL_LOGIN = "http://192.168.2.120/bd_mrs/login.php";
 
     @Override
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setTitle(R.string.txt_bt_login);
 
-        //sessionManager = new SessionManager(this);
+        sessionManager = new SessionManager(this);
 
         loading = findViewById(R.id.loading);
         registration = findViewById(R.id.registration);
@@ -93,11 +94,10 @@ public class LoginActivity extends AppCompatActivity {
                                     //String email = object.getString("email").trim();
                                     String id = object.getString("id").trim(); Toast.makeText(getApplicationContext(),id,Toast.LENGTH_LONG).show();
 
-                                    //sessionManager.createSession(id);
+                                    sessionManager.createSession(id);
 
-                                    //Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-
-                                    //startActivity(intent);
+                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    startActivity(intent);
                                     loading.setVisibility(View.GONE);
                                 }
                             }

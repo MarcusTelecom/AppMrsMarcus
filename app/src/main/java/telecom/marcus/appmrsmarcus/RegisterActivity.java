@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         radioGroup_function = findViewById(R.id.radio_group_funtion);
 
         name = findViewById(R.id.name);
-        name_user = findViewById(R.id.name_user);
+        name_user = findViewById(R.id.name_userr);
         registration = findViewById(R.id.registration);
         password = findViewById(R.id.password);
         c_password = findViewById(R.id.c_password);

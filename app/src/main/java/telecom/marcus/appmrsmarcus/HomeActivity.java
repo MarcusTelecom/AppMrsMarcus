@@ -1,8 +1,10 @@
 package telecom.marcus.appmrsmarcus;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,9 +15,33 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private SessionManager sessionManager;
+    private TextView name_user, registration;
+    private String getId;
+
+    private static String URL_READ = "http://192.168.2.120/bd_mrs/read_detail.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +49,12 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                sessionManager.logout();
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -38,7 +64,25 @@ public class HomeActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        sessionManager = new SessionManager(this);
+        sessionManager.checkLogin();
+
+        View header = navigationView.getHeaderView(0);
+        name_user = header.findViewById(R.id.name_userr);
+        registration = header.findViewById(R.id.registationn);
+
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        getId = user.get(sessionManager.ID);
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getUserDetail();
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -95,5 +139,59 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void getUserDetail() {
+        final ProgressDialog proggressDialog = new ProgressDialog(this);
+        proggressDialog.setMessage("Loading...");
+        proggressDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_READ,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        proggressDialog.dismiss();
+
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            JSONArray jsonArray = jsonObject.getJSONArray("read");
+
+                            if (success.equals("1")) {
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject object = jsonArray.getJSONObject(i);
+
+                                    String strNameUser = object.getString("name_user").trim();
+                                    String strRegistration = object.getString("registration").trim();
+
+                                    name_user.setText(strNameUser);
+                                    registration.setText(strRegistration);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            proggressDialog.dismiss();
+                            Toast.makeText(HomeActivity.this, "Error Reading Detail " + e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        proggressDialog.dismiss();
+                        Toast.makeText(HomeActivity.this, "Error Reading Detail " + error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id", getId);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 }
