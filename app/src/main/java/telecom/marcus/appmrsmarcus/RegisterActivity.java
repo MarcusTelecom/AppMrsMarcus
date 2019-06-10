@@ -126,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
                             String message = jsonObject.getString("message");
                             if (success.equals("1")) {
                                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                                sessionManager.createSession(id);
+                                sessionManager.createSession(id, name, name_user, registration, function);
                                 progressDialog.dismiss();
                                 finish();
                             }

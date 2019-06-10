@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(final String registration, final String password) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Saving...");
+        progressDialog.setMessage("Carregando...");
         progressDialog.show();
         btn_login.setVisibility(View.GONE);
 
@@ -91,8 +91,13 @@ public class LoginActivity extends AppCompatActivity {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
                                     String id = object.getString("id").trim();
+                                    String name = object.getString("name").trim();
+                                    String name_user = object.getString("name_user").trim();
+                                    String registration = object.getString("registration").trim();
+                                    String function = object.getString("function").trim();
 
-                                    sessionManager.createSession(id);
+
+                                    sessionManager.createSession(id, name, name_user, registration, function);
 
                                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                     startActivity(intent);

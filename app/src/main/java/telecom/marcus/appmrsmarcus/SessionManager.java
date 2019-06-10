@@ -15,6 +15,10 @@ public class SessionManager {
     private static final String PREF_NAME = "LOGIN";
     private static final String LOGIN = "IS_LOGIN";
     public static final String ID = "ID";
+    public static final String NAME = "NAME";
+    public static final String NAME_USER = "NAME_USER";
+    public static final String REGISTRATION = "REGISTRATION";
+    public static final String FUNCTION = "FUNCTION";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -22,10 +26,14 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createSession(String id){
+    public void createSession(String id, String name, String name_user, String registration, String function){
 
         editor.putBoolean(LOGIN, true);
         editor.putString(ID, id);
+        editor.putString(NAME, name);
+        editor.putString(NAME_USER, name_user);
+        editor.putString(REGISTRATION, registration);
+        editor.putString(FUNCTION, function);
         editor.apply();
 
     }
