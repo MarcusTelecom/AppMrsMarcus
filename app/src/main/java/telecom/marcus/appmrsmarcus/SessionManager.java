@@ -55,6 +55,10 @@ public class SessionManager {
 
         HashMap<String, String> user = new HashMap<>();
         user.put(ID, sharedPreferences.getString(ID, null));
+        user.put(NAME, sharedPreferences.getString(NAME, null));
+        user.put(NAME_USER, sharedPreferences.getString(NAME_USER, null));
+        user.put(REGISTRATION, sharedPreferences.getString(REGISTRATION, null));
+        user.put(FUNCTION, sharedPreferences.getString(FUNCTION, null));
 
         return user;
     }

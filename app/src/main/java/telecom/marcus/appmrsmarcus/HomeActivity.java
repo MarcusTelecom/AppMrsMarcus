@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity
 
     private SessionManager sessionManager;
     private TextView name_user, registration;
-    private String getId;
+    private String getId,getFunction;
     private static String URL_READ = "http://192.168.2.120/bd_mrs/read_detail.php";
 
 
@@ -50,13 +50,6 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //fdfdf
-            }
-        });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -74,6 +67,16 @@ public class HomeActivity extends AppCompatActivity
 
         HashMap<String, String> user = sessionManager.getUserDetail();
         getId = user.get(sessionManager.ID);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                intent.putExtra("function","2");
+                startActivity(intent);
+            }
+        });
 
     }
 

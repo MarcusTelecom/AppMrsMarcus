@@ -1,23 +1,11 @@
 package telecom.marcus.appmrsmarcus;
 
-import org.json.JSONArray;
-
 public class ClassUser {
-
     private String id;
     private String name;
-    private String user_name;
+    private String name_user;
     private String registration;
     private String function;
-
-
-    public ClassUser(String id, String name, String user_name, String registration, String function) {
-        this.id = id;
-        this.name = name;
-        this.user_name = user_name;
-        this.registration = registration;
-        this.function = function;
-    }
 
     public String getId() {
         return id;
@@ -35,12 +23,12 @@ public class ClassUser {
         this.name = name;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getName_user() {
+        return name_user;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setName_user(String name_user) {
+        this.name_user = name_user;
     }
 
     public String getRegistration() {
@@ -58,4 +46,15 @@ public class ClassUser {
     public void setFunction(String function) {
         this.function = function;
     }
+
+    public ClassUser(String id, String name, String name_user, String registration, String function) {
+        this.id = id;
+        this.name = name;
+        this.name_user = name_user;
+        this.registration = registration;
+        this.function = function;
+
+
+    }
 }
+
