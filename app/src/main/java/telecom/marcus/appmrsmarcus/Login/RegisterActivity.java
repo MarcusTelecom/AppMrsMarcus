@@ -1,4 +1,4 @@
-package telecom.marcus.appmrsmarcus;
+package telecom.marcus.appmrsmarcus.Login;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,6 +24,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import telecom.marcus.appmrsmarcus.R;
 
 public class RegisterActivity extends AppCompatActivity {
 

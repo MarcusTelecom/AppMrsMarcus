@@ -1,11 +1,9 @@
-package telecom.marcus.appmrsmarcus;
+package telecom.marcus.appmrsmarcus.Navegation;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,9 +33,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import telecom.marcus.appmrsmarcus.Login.RegisterActivity;
+import telecom.marcus.appmrsmarcus.Login.SessionManager;
+import telecom.marcus.appmrsmarcus.RecyclerView.RecyclerViewAux;
+import telecom.marcus.appmrsmarcus.R;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Button button1,button2;
     private SessionManager sessionManager;
     private TextView name_user, registration;
     private String getId,getFunction;
@@ -64,6 +69,24 @@ public class HomeActivity extends AppCompatActivity
         View header = navigationView.getHeaderView(0);
         name_user = header.findViewById(R.id.name_userr);
         registration = header.findViewById(R.id.registationn);
+        button1 = findViewById(R.id.bt_1);
+        button2 = findViewById(R.id.bt_2);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, RecyclerViewAux.class);
+                intent.putExtra("function","2");
+                startActivity(intent);
+            }
+        });
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"bt2",Toast.LENGTH_LONG).show();
+            }
+        });
 
         HashMap<String, String> user = sessionManager.getUserDetail();
         getId = user.get(sessionManager.ID);
@@ -72,9 +95,7 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                intent.putExtra("function","2");
-                startActivity(intent);
+
             }
         });
 

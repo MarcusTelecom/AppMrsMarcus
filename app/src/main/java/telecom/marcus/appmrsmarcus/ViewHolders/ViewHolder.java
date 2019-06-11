@@ -1,10 +1,12 @@
-package telecom.marcus.appmrsmarcus;
+package telecom.marcus.appmrsmarcus.ViewHolders;
 
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import telecom.marcus.appmrsmarcus.R;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
 

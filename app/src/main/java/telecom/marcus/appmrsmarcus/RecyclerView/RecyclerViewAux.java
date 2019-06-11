@@ -1,4 +1,4 @@
-package telecom.marcus.appmrsmarcus;
+package telecom.marcus.appmrsmarcus.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -26,7 +25,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+import telecom.marcus.appmrsmarcus.Classes.ClassUser;
+import telecom.marcus.appmrsmarcus.R;
+import telecom.marcus.appmrsmarcus.RecyclerAdapters.RecyclerAdapter;
+
+public class RecyclerViewAux extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;

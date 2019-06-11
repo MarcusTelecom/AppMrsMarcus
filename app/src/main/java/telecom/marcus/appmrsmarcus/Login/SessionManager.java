@@ -1,10 +1,12 @@
-package telecom.marcus.appmrsmarcus;
+package telecom.marcus.appmrsmarcus.Login;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
 import java.util.HashMap;
+
+import telecom.marcus.appmrsmarcus.Navegation.HomeActivity;
 
 public class SessionManager {
     SharedPreferences sharedPreferences;

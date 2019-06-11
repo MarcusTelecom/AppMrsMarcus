@@ -1,4 +1,4 @@
-package telecom.marcus.appmrsmarcus;
+package telecom.marcus.appmrsmarcus.Downloads;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

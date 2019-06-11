@@ -1,4 +1,4 @@
-package telecom.marcus.appmrsmarcus;
+package telecom.marcus.appmrsmarcus.Classes;
 
 public class ClassUser {
     private String id;
