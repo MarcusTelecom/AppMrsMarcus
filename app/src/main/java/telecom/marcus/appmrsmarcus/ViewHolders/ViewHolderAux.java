@@ -8,14 +8,14 @@ import android.widget.TextView;
 
 import telecom.marcus.appmrsmarcus.R;
 
-public class ViewHolder extends RecyclerView.ViewHolder {
+public class ViewHolderAux extends RecyclerView.ViewHolder {
 
     public ImageView featuredImage;
     public TextView item_name;
     public TextView item_registration;
     public AppCompatButton btn_select;
 
-    public ViewHolder(View itemView) {
+    public ViewHolderAux(View itemView) {
         super(itemView);
 
         this.featuredImage = itemView.findViewById(R.id.featuredImage);

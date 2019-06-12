@@ -35,6 +35,8 @@ import java.util.Map;
 
 import telecom.marcus.appmrsmarcus.Login.RegisterActivity;
 import telecom.marcus.appmrsmarcus.Login.SessionManager;
+import telecom.marcus.appmrsmarcus.RecyclerAdapters.RecyclerAdapterPDF;
+import telecom.marcus.appmrsmarcus.RecyclerView.MainActivity;
 import telecom.marcus.appmrsmarcus.RecyclerView.RecyclerViewAux;
 import telecom.marcus.appmrsmarcus.R;
 
@@ -84,7 +86,8 @@ public class HomeActivity extends AppCompatActivity
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"bt2",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

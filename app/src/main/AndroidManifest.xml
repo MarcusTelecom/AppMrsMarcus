@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="telecom.marcus.appmrsmarcus">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,8 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RecyclerView.MainActivity"></activity>
+        <activity android:name=".RecyclerView.RecyclerViewPDFS" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".Navegation.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,18 +26,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login">
-        </activity>
+            android:name=".Login.LoginActivity"
+            android:label="@string/title_activity_login" />
         <activity
-            android:name=".RegisterActivity"
-            android:label="RegisterActivity">
+            android:name=".Login.RegisterActivity"
+            android:label="RegisterActivity" />
+        <activity android:name=".RecyclerView.RecyclerViewAux" />
 
-
-        </activity>
-
-        <activity android:name=".MainActivity"
-            android:label="MainActivity"></activity>
+        <service
+            android:name=".Downloads.DownloadSongService"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -11,26 +11,26 @@ import java.util.List;
 
 import telecom.marcus.appmrsmarcus.Classes.ClassUser;
 import telecom.marcus.appmrsmarcus.R;
-import telecom.marcus.appmrsmarcus.ViewHolders.ViewHolder;
+import telecom.marcus.appmrsmarcus.ViewHolders.ViewHolderAux;
 
-public class RecyclerAdapter  extends RecyclerView.Adapter<ViewHolder> {
+public class RecyclerAdapterAux extends RecyclerView.Adapter<ViewHolderAux> {
 
     private List<ClassUser> list;
 
-    public RecyclerAdapter(List<ClassUser> list){
+    public RecyclerAdapterAux(List<ClassUser> list){
         this.list = list;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolderAux onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item,viewGroup,false);
-        return new ViewHolder(view);
+        return new ViewHolderAux(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolderAux viewHolder, int i) {
         final ClassUser classUser = list.get(i);
 
         viewHolder.item_name.setText(classUser.getName());

@@ -2,8 +2,8 @@ package telecom.marcus.appmrsmarcus.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -25,17 +25,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import telecom.marcus.appmrsmarcus.Classes.ClassPDFs;
 import telecom.marcus.appmrsmarcus.Classes.ClassUser;
 import telecom.marcus.appmrsmarcus.R;
 import telecom.marcus.appmrsmarcus.RecyclerAdapters.RecyclerAdapterAux;
+import telecom.marcus.appmrsmarcus.RecyclerAdapters.RecyclerAdapterPDF;
 
-public class RecyclerViewAux extends AppCompatActivity {
+public class RecyclerViewPDFS extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private RecyclerAdapterAux adapter;
-    private List<ClassUser> list = new ArrayList<>();
-    private ClassUser user;
-    private static String URL_LIST_USERS = "http://192.168.2.120/bd_mrs/list_users.php";
+    private RecyclerAdapterPDF adapter;
+    private List<ClassPDFs> list = new ArrayList<>();
+    private ClassPDFs pdf;
 
 
     @Override
@@ -43,46 +44,45 @@ public class RecyclerViewAux extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_aux);
 
-        recyclerView = findViewById(R.id.recyclerViewUser);
+        recyclerView = findViewById(R.id.recyclerViewPDF);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new RecyclerAdapterAux(list);
-        recyclerView.setAdapter(adapter);
+        //adapter = new RecyclerAdapterPDF(list);
+        //recyclerView.setAdapter(adapter);
 
+        //list.clear();
+        //pdf = new ClassPDFs("id_pdf", "title", "description", "insert_date", "url");
 
-        list_user();
-
-
+        //Toast.makeText(getApplicationContext(),pdf.getTitle(),Toast.LENGTH_LONG).show();
+        //list.add(pdf);
+        //adapter.notifyDataSetChanged();
+       // list_pdf();
     }
 
-    private void list_user() {
-
+    private void list_pdf() {
         final ProgressDialog proggressDialog = new ProgressDialog(this);
         proggressDialog.setMessage("Loading List...");
         //proggressDialog.show();
-        final Intent intent = getIntent();
-        final String function = intent.getStringExtra("function");
 
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_LIST_USERS,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
-                            JSONArray jsonArray = jsonObject.getJSONArray("users");
+                            JSONArray jsonArray = jsonObject.getJSONArray("pdf");
                             if (success.equals("1")) {
                                 for (int i = 0; i < jsonArray.length(); i++) {
                                     JSONObject object = jsonArray.getJSONObject(i);
-                                    String id = object.getString("id").trim();
-                                    String name = object.getString("name").trim();
-                                    String name_user = object.getString("name_user").trim();
-                                    String registration = object.getString("registration").trim();
-                                    String function = object.getString("function").trim();
+                                    String id_pdf = object.getString("id_pdf").trim();
+                                    String title = object.getString("title").trim();
+                                    String description = object.getString("description").trim();
+                                    String insert_date = object.getString("insert_date").trim();
+                                    String url = object.getString("url").trim();
 
-                                    user = new ClassUser(id, name, name_user, registration, function);
-                                    list.add(user);
+                                    pdf = new ClassPDFs(id_pdf, title, description, insert_date, url);
+                                    list.add(pdf);
                                     adapter.notifyDataSetChanged();
                                 }
                             } else {
@@ -106,7 +106,6 @@ public class RecyclerViewAux extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("function", function);
                 return params;
             }
         };
